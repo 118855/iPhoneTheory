@@ -23,7 +23,17 @@ import Foundation
  Min: 1
  */
 // Добавь код сюда:
-
+func calculateMin (_ firstValue: Int, _ secondValue: Int) {
+    if firstValue < secondValue {
+        print("Min: \(firstValue)")
+    }
+    else if secondValue < firstValue {
+        print("Min: \(secondValue)")
+    } else {
+        print("Values are equal")
+    }
+}
+calculateMin(1, 2)
 /*:
 ---
 #### Задание 2
@@ -44,7 +54,15 @@ import Foundation
  */
 
 // Добавь код сюда:
-
+func countDown (_ n: Int) {
+    for i in (1...n).reversed() {
+        sleep(1)
+        print(i)
+    }
+    sleep(1)
+    print("GO!")
+}
+countDown(5)
 
 /*:
 ---
@@ -58,7 +76,12 @@ import Foundation
  Hi, NIX
  */
 // Добавь код сюда:
-
+func repeatPrint (s: String, n: Int) {
+    for _ in 1...n {
+        print("\(s)")
+    }
+}
+repeatPrint(s: "Hi, NIX", n: 2)
 /*:
 ---
 #### Задание 4
@@ -71,7 +94,15 @@ import Foundation
  [3, 2, 1]
  */
 // Добавь код сюда:
-
+func reverse (_ array: inout [Int]) {
+    let count = array.count
+    for index in 0..<count/2 {
+        (array[index], array[count - index - 1]) = (array[count - index - 1], array[index])
+     }
+    print(array)
+}
+var arr = [1,3,4,6]
+reverse( &arr)
 /*:
 ---
 #### Задание 5
@@ -97,6 +128,17 @@ import Foundation
  */
 // Добавь код сюда:
 
+func factorial (_ n: Int) -> Int {
+    if n <= 1 {
+        return 1
+    }
+    else {
+        return n * factorial(n - 1)
+    }
+}
+    
+print(factorial(4))
+
 /*:
 ---
 #### Задание 6
@@ -120,6 +162,20 @@ import Foundation
  */
 // Добавь код сюда:
 
+func filterDigitLength (_ array: [Int], _ tens: Int) {
+    var newSortedArray: [Int] = []
+    for (_, value) in array.enumerated() {
+        if String(value).count == tens {
+            newSortedArray.append(value)
+        }
+    }
+    print(newSortedArray)
+}
+
+filterDigitLength([1,22,345,345], 2)
+
+
+
 /*:
 ---
 #### Задание 7
@@ -142,6 +198,19 @@ import Foundation
  */
 // Добавь код сюда:
 
+func getExtension ( _ arrayOfStrings:  [String]) {
+    var newArray = [String]()
+    for (_, value) in arrayOfStrings.enumerated() {
+        let word = value
+        let firstIndex = word.index(word.endIndex, offsetBy: -3)
+        let newWord = word[firstIndex..<word.endIndex]
+      newArray.append(String(newWord))
+    }
+    print(newArray)
+}
+    
+let testArray = ["project1.jpg", "project1.pdf", "project1.mp3", "project2.pdf"]
+getExtension(testArray)
 
 
 /*:
