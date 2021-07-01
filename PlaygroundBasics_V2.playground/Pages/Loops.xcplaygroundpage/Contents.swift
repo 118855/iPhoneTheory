@@ -159,27 +159,62 @@ for i in 1...n {
 */
 // Добавь код сюда:
 
-var someArray = [12, 34, 54, 3222, 5767, 43, 4545, 5555555, 67544, 1, 3, 4, 22, 374, 88, 5, 873, 34, 21, 98, 2198, 33298]
+var someArray = [12, 34, 54, 3222, 5767, 43, 4545, 5555555, 67544, 1, 3, 4, 22, 374, 88, 5, 873, 21, 98, 2198, 33298]
+
+//linear sort
+func linearSort (array:  inout [Int]) -> [Int] {
+    guard array.count > 1 else {return array}
+    for min in 0..<array.count {
+            for j in min..<array.count {
+                if array[j] < array[min] {
+                    let temp = array[min]
+                    array[min] = array[j]
+                    array[j] = temp
+                }
+            }
+        }
+    return array
+}
+print(linearSort(array: &someArray))
+
+    
+    
 
 //bubble sort
-
-for i in 0..<someArray.count {
+func bubleSort (array:  inout [Int]) -> [Int] {
+    for i in 0..<array.count {
     
-    let index = (someArray.count - 1) - i
+        let index = (array.count - 1) - i
     
-    for j in 0..<index {
-    let number = someArray[j]
-    let numberTwo = someArray[j + 1]
-    
-    if number > numberTwo {
-        someArray[j] = numberTwo
-        someArray[j + 1] = number
+        for j in 0..<index {
+            var number = array[j]
+            var numberTwo = array[j + 1]
+            if number > numberTwo {
+            number = array[j + 1]
+            numberTwo = array[j]
+        }
     }
-    }
+  }
+    return array
 }
-print(someArray)
-someArray = [293, 2, 3232, 33]
+bubleSort(array: &someArray)
+
+
 //quick sort
+func quickSort (array:[Int]) -> [Int] {
+    if array.count == 0 {
+        return []
+    }
+    let comparableNumber = array[0]
+    let comparableArray = array.count > 1 ? array[1..<array.count] : []
+    let smallerArray = comparableArray.filter({$0 <= comparableNumber})
+    let greaterArray = comparableArray.filter({$0 > comparableNumber})
+    
+    return quickSort(array: smallerArray) + [comparableNumber] + quickSort(array: greaterArray)
+}
+
+quickSort(array: someArray)
+
 
 
 
