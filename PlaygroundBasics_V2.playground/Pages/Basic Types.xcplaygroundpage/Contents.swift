@@ -134,6 +134,10 @@ print(name,dateOfBirth)
  - Если в названии страны встречается буква А, выведи ее нзавание в консоль.
 */
 // Добавь код сюда:
+var country1 = " Ukraine", country2 = "Poland", country3 = "France", country4 = "Italy", country5 = "USA"
+if country1.contains("a") {
+    print("\(country1)")
+}
 
 /*:
 ---
@@ -144,6 +148,12 @@ print(name,dateOfBirth)
  - Выведи его консоль.
 */
 // Добавь код сюда:
+let someString = "алвовжд"
+var changedString = someString.uppercased()
+
+for index in someString.indices {
+    print("\(index)")
+}
 
 /*:
 ---
@@ -154,5 +164,4 @@ print(name,dateOfBirth)
  - Выведи его консоль.
 */
 // Добавь код сюда:
-
 //: [Назад: Playground](@previous)  |  Страница 3  |  [Вперед: Коллекции. Массивы и множества](@next)
