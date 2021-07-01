@@ -23,14 +23,12 @@ import Foundation
  Min: 1
  */
 // Добавь код сюда:
-func calculateMin (_ firstValue: Int, _ secondValue: Int) {
+func calculateMin (_ firstValue: Int, _ secondValue: Int) -> Int {
     if firstValue < secondValue {
-        print("Min: \(firstValue)")
+        return firstValue
     }
-    else if secondValue < firstValue {
-        print("Min: \(secondValue)")
-    } else {
-        print("Values are equal")
+    else {
+        return secondValue
     }
 }
 calculateMin(1, 2)
@@ -201,16 +199,15 @@ filterDigitLength([1,22,345,345], 2)
 func getExtension ( _ arrayOfStrings:  [String]) {
     var newArray = [String]()
     for (_, value) in arrayOfStrings.enumerated() {
-        let word = value
-        let firstIndex = word.index(word.endIndex, offsetBy: -3)
-        let newWord = word[firstIndex..<word.endIndex]
-      newArray.append(String(newWord))
+        let newWord = value.components(separatedBy: ".")[1]
+      newArray.append(newWord)
     }
     print(newArray)
 }
     
 let testArray = ["project1.jpg", "project1.pdf", "project1.mp3", "project2.pdf"]
 getExtension(testArray)
+
 
 
 /*:
