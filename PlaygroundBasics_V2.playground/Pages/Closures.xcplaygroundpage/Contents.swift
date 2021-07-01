@@ -33,14 +33,23 @@ import Foundation
  We ❤️ Swift
  */
 // Добавь код сюда:
+    func applyKTimes (k:Int, myClosure: () -> Void) {
+        for _ in 1...k {
+            myClosure()
+    }
+}
 
+applyKTimes(k: 3) {
+    print("We ❤️ Swift")
+}
 /*:
 ---
 #### Задание 2
  - Обьяви переменную _numbers_, представляющую собой массив, который соостоит из целых чисел. Проицинициализируй его любыми значениями.
  */
 // Добавь код сюда:
-
+var numbers = [Int]()
+numbers = [3, 45 , 456, 23, 6]
 /*:
  - Создай новый массив _multiples_, состоящий из всех кратных 3 чисел исходного массива.
  - Выведи полученный массив в консоль. Если полученный массив пустой, выведи в консоль - _No data_.
@@ -61,6 +70,12 @@ import Foundation
  No data
  */
 // Добавь код сюда:
+var multiples = numbers.filter{$0 % 3 == 0}
+if numbers == [] {
+    print("No data")
+} else {
+    print(multiples)
+}
 
 /*:
  - Найди наибольшее число из исходного массива _numbers_ и выведи его в консоль.
@@ -74,6 +89,8 @@ import Foundation
  Max: 12
  */
 // Добавь код сюда:
+let maxNumber = numbers.reduce(Int.min, {max($0, $1)})
+print(maxNumber)
 
 /*:
 ---
@@ -93,6 +110,15 @@ import Foundation
  */
 
 // Добавь код сюда:
+func forEach ( _ array : [Int], _ myClosure: (Int) -> Void) {
+    for (_, value) in array.enumerated() {
+            myClosure(value)
+    }
+}
+
+forEach([1, 2, 3, 4]) {
+    print($0 + 1)
+ }
 
 /*:
 ---
