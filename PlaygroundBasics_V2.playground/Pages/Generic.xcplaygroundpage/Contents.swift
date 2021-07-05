@@ -26,7 +26,9 @@ func areStringsEqual(x: String, _ y: String) -> Bool {
 }
 
 // Добавь код сюда:
-
+func areEqual<T: Equatable>(x: T, _ y: T) -> Bool {
+    return x == y
+  }
 /*:
 ---
 #### Задание 2
@@ -57,7 +59,6 @@ func existsManual(item:String, inArray:[String]) -> Bool {
         return false
     }
 }
-
 /*:
 func existsManual(item:String, inArray:[String]) -> Bool
 ...
@@ -72,6 +73,13 @@ func existsManual(item:Person, inArray:[Person]) -> Bool
 */
 
 // Добавь код сюда:
-
+func existsManual<T: Equatable>(item:T, inArray:[T]) -> Bool {
+    for  value in inArray {
+    if item == value {
+            return true
+        }
+    }
+    return false
+}
 
 //: [Назад:  Делегаты](@previous)  |  Страница 13]  [Вперед:  Паттерны проектирования](@next)
