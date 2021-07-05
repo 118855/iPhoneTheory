@@ -82,8 +82,8 @@ n = 5\
 // Добавь код сюда:
 
 n = 5
-for i in 0...n {
-    print(i * i)
+for index in 0...n {
+    print(index * index)
 }
 
 /*:
@@ -103,11 +103,11 @@ n = 100\
  // Добавь код сюда:
 
 n = 100
-var i = 2
+var index = 2
 
-while i <= n {
-    print (i)
-    i *= 2
+while index <= n {
+    print (index)
+    index *= 2
 }
 
 /*:
@@ -145,8 +145,8 @@ n = 4\
 
 n = 4
 
-for i in 1...n {
-    print(String(Array(repeating: "⭐", count: i)))
+for index in 1...n {
+    print(String(Array(repeating: "⭐", count: index)))
 }
 
 /*:
@@ -229,7 +229,25 @@ quickSort(array: someArray)
 */
 // Добавь код сюда:
 
+//Такое же задание было в Arrays
 
+var ukraine = "Ukraine", poland = "Poland", france = "France", italy = "Italy", spain = "Spain", greece = "Greece", hungary = "Hungary", china = "China", brasil = "Brasil", albania = "Albania"
+
+var allCountries = [ukraine, poland, france, italy, spain, greece, hungary, china, brasil, albania]
+
+var sortedArray = [String]()
+
+for (_, value) in allCountries.enumerated() {
+    if value.count > 5 && !value.contains("A") {
+        sortedArray.append(value)
+    }
+    if value.contains("A") {
+        let newValue = value.replacingOccurrences(of: "A", with: "O")
+        sortedArray.append(newValue)
+        }
+    }
+
+print(sortedArray)
 /*:
 ---
 #### Задание 5:
@@ -254,6 +272,9 @@ _Output:_\
  True
 */
 // Добавь код сюда:
+let word = "Apple"
+let wordLovercased = word.lowercased()
+wordLovercased.count == Set(wordLovercased).count ? print("true") : print("false")
 
 /*:
 ---
@@ -270,8 +291,14 @@ _Output:_\
  "hhheeellllllooo"
 */
 // Добавь код сюда:
+var newWord = String()
 
-
+word.forEach{
+    for _ in 0..<3 {
+    newWord.append($0)
+    }
+}
+print(newWord)
 /*:
 ---
 #### Задание 6:
@@ -287,5 +314,9 @@ _Output:_\
  [1, 2]
 */
 // Добавь код сюда:
+var array: [Any] = [1, 2, "a", "b"]
+
+var newArray = array.compactMap({$0 as? Int})
+print(newArray)
 
 //: [Назад: Коллекции. Массивы и множества](@previous)  |  Страница 5  |  [Вперед:  Функции](@next)
