@@ -28,13 +28,13 @@ import Foundation
 */
 
 // Добавь код сюда:
-var a = 22
-var b: Int = 44
-var c: Int = 0
-c = a
-a = b
-b = c
-print("Переменная а равна \(a), переменная b равна \(b)")
+var firstNumber = 22
+var secondNumber: Int = 44
+var thirdNumber: Int = 0
+thirdNumber = firstNumber
+firstNumber = secondNumber
+secondNumber = thirdNumber
+print("Переменная а равна \(firstNumber), переменная b равна \(secondNumber)")
 /*:
 ---
 ### Задание 2:
@@ -42,11 +42,11 @@ print("Переменная а равна \(a), переменная b равн�
  - Установи новое произвольное значение всем параметрам, для которых эта операция возможна.
 */
 // Добавь код сюда:
-let d: Float = 3.3
-let e: Float
-var f: Double
-e = 3.4
-f = 3.5
+let parameter: Float = 3.3
+let parameter2: Float
+var parameter3: Double
+parameter2 = 3.4
+parameter3 = 3.5
 
 
 /*:
@@ -57,28 +57,28 @@ f = 3.5
  - Найди сумму всех трех констант и запишите ее в переменную типа `Float`. Результат выведи в консоль.
 */
 // Добавь код сюда:
-let g: Int
-let h: Float
-let i: Double
-g = 18
-h = 16.4
-i = 5.7
-var j: Float = Float(g) + h + Float(i)
-print("Сумма констант g,h,i равно \(j)")
+let first: Int
+let second: Float
+let third: Double
+first = 18
+second = 16.4
+third = 5.7
+var summ: Float = Float(first) + second + Float(third)
+print("Сумма констант first, second, third равно \(summ)")
 
 /*:
 - Найди произведение всех трех констант и запиши его в переменную типа `Int`. Результат выведи в консоль.
  - Note: 👆 _Помни, что тебе необходимо получить результат с минимальной погрешностью._
 */
 // Добавь код сюда:
-var k: Int = Int(Double(g)*Double(h)*i)
-print("Произведение констант g,h,i равно \(k)")
+var multiple: Int = Int(Double(first)*Double(first)*third)
+print("Произведение констант first, second, third  равно \(multiple)")
 /*:
 - Найди остаток от деления константы типа `Float` на константу типа `Double` и запиши ее в переменную типа `Double`. Результат выведи в консоль.
 */
 // Добавь код сюда:
-var l: Double = Double( Int(h) % Int(i))
-print ("Остаток от деления h на i равен \(l)")
+var remainder: Double = Double( Int(second) % Int(third))
+print ("Остаток от деления second на third равен \(remainder)")
 
 /*:
 ---
@@ -89,11 +89,11 @@ print ("Остаток от деления h на i равен \(l)")
  - Выведи в консоль результат.
  */
 // Добавь код сюда:
-var m = "Hello"
-var n = 25
-var o = 50
-let p = m + String( n + o)
-print(p)
+var string = "Hello"
+var integer = 25
+var secondInteger = 50
+let allTogether = string + String( integer + secondInteger)
+print(allTogether)
 /*:
 ---
 #### Задание 5:
@@ -103,10 +103,10 @@ print(p)
 
  */
 // Добавь код сюда:
-var q = true
-var r = false
-let and = q && r
-let or = q || r
+var logicalTrue = true
+var logicalFalse = false
+let and = logicalTrue && logicalFalse
+let or = logicalTrue || logicalFalse
 print("Результат логического И равен \(and), рузельтат ИЛИ равено \(or)")
 
 /*:
@@ -135,10 +135,12 @@ print(name,dateOfBirth)
 */
 // Добавь код сюда:
 var country1 = " Ukraine", country2 = "Poland", country3 = "France", country4 = "Italy", country5 = "USA"
-if country1.contains("a") {
-    print("\(country1)")
+var allCountries = [country1, country2, country3, country4, country5]
+for country in allCountries {
+    if country.contains("A") {
+        print(country)
+    }
 }
-
 /*:
 ---
 #### Задание 8:
@@ -148,12 +150,35 @@ if country1.contains("a") {
  - Выведи его консоль.
 */
 // Добавь код сюда:
-let someString = "алвовжд"
+let someString = "строка"
 var changedString = someString.uppercased()
+let new = someString.applyingTransform(.toLatin, reverse: false)
 
 for index in someString.indices {
-    print("\(index)")
+    print(index)
 }
+for (index, char) in someString.enumerated() {
+    print("\(index) - \(char)")
+}
+
+// Думала еще такой вариант, но сработало только для первых трех букв
+var eng = "a"
+var rus = "а"
+
+for scalar in eng.unicodeScalars {
+    print(scalar.value)
+}
+for scalar in rus.unicodeScalars {
+    print(scalar.value)
+}
+
+var newString = String()
+for scalar in someString.unicodeScalars {
+    let newWord = scalar.value - (1090 - 116)
+    let char = UnicodeScalar(newWord)
+    newString.append(String(char!))
+}
+newString
 
 /*:
 ---
