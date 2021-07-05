@@ -29,13 +29,13 @@ class User {
 }
 
 extension User: AlarmDelegate {
-    func alarmRang() {
+    func alarmDidRang() {
         print("User: I heard the alarm and woke up.")
     }
 }
     
 protocol AlarmDelegate: class {
-    func alarmRang()
+    func alarmDidRang()
 }
 
 class Alarm{
@@ -45,7 +45,7 @@ class Alarm{
     func turnON(){
         
         print("Alarm: The alarm is ringing")
-        delegate?.alarmRang()
+        delegate?.alarmDidRang()
     }
 }
 
@@ -66,35 +66,40 @@ class Client {
         let worker = Worker()
         worker.delegate = self
         worker.startWork()
-    }
+        worker.finishRenovation()
+   }
 }
 
 extension Client: WorkerDetegate {
     
-    func painWalls() {
+    func workerDidPaintWalls() {
         print("Client: Black color.")
     }
-    func endRenovation() {
+    func workerDidEndRenovation() {
         print("Client: Good job.")
     }
-
-  
 }
 
 protocol WorkerDetegate: class {
-    func painWalls()
-    func endRenovation()
+   
+    func workerDidPaintWalls()
+    func workerDidEndRenovation()
 }
 
 class Worker {
     
     weak var delegate: WorkerDetegate?
     
-    func startWork(){
+   
+    func startWork () {
+        print("Worker: Prepearing works are finished.")
         print("Worker: What color of walls do you want?")
-        delegate?.painWalls()
+        delegate?.workerDidPaintWalls()
+    }
+    
+    func finishRenovation () {
         print("Worker: Renovation is end.")
-        delegate?.endRenovation()
+        delegate?.workerDidEndRenovation()
     }
 }
 
