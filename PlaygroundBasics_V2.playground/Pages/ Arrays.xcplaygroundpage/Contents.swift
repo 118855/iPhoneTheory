@@ -32,14 +32,11 @@ listOfNumbers = [2 ,6 , 100, 3, 106, 7]
  Max: 106
 */
 // Добавь код сюда:
-
-//print("Max: \(listOfNumbers.max()!)")
-
-if let maxNumberOfArray = listOfNumbers.max() {
-    print("Max: \(maxNumberOfArray)")
+func max () {
+    guard let maxNumber = listOfNumbers.max() else {return}
+        print ("Max: \(maxNumber)")
 }
-
-
+max()
 /*:
  - Выведи в консоль все нечетные числа из этого массива.
  - Example: 😉\
@@ -74,7 +71,6 @@ for (index, value) in listOfNumbers.enumerated() {
         print("Numbers with odd indexes: \(value)")
     }
 }
-
 /*:
  - Выведи в консоль числа из этого массива в обратном порядке.
  - Example: 😉\
@@ -86,7 +82,6 @@ for (index, value) in listOfNumbers.enumerated() {
 // Добавь код сюда:
 let reverseArray: [Int] = listOfNumbers.reversed()
 print("Going back: \(reverseArray)")
-
 /*:
  - Получи новый массив, путем сортировки массива по возрастанию.
  - Выведи его в консоль.
@@ -118,11 +113,7 @@ var x = 20
  true
  */
 // Добавь код сюда:
-if listOfNumbers.contains(20) {
-        print(true)
-    } else {
-        print(false)
-    }
+listOfNumbers.contains(x) ? print("true") : print("false")
 
 /*:
 ---
@@ -163,8 +154,21 @@ print("Intersection: \(Set(listOfNumbers).intersection(Set(otherNumbers)).sorted
  - Выведи в консоль полученный массив.
 */
 // Добавь код сюда:
+var ukraine = "Ukraine", poland = "Poland", france = "France", italy = "Italy", spain = "Spain", greece = "Greece", hungary = "Hungary", china = "China", brasil = "Brasil", albania = "Albania"
 
+var allCountries = [ukraine, poland, france, italy, spain, greece, hungary, china, brasil, albania]
 
+var sortedArray = [String]()
+for (_, value) in allCountries.enumerated() {
+    if value.count > 5 && !value.contains("A") {
+        sortedArray.append(value)
+    }
+    if value.contains("A") {
+        let newValue = value.replacingOccurrences(of: "A", with: "O")
+        sortedArray.append(newValue)
+        }
+    }
+print(sortedArray)
 /*:
 ---
 #### Задание 4:
@@ -188,7 +192,11 @@ False
 */
 
 // Добавь код сюда:
-
+let a: [UInt] = [1, 4, 5, 45, 245]
+let b: [UInt] = [3, 67, 123, 245, 1, 4, 5, 45]
+let aSet = Set(a)
+let bSet = Set(b)
+print(aSet.isStrictSubset(of: bSet))
 //: [Назад: Простые типы данных](@previous)  |  Страница 4  |  [Вперед: Управление потоком](@next)
 
 
