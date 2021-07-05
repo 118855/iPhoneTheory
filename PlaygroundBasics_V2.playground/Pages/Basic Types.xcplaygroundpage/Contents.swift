@@ -175,8 +175,9 @@ for scalar in rus.unicodeScalars {
 var newString = String()
 for scalar in someString.unicodeScalars {
     let newWord = scalar.value - (1090 - 116)
-    let char = UnicodeScalar(newWord)
-    newString.append(String(char!))
+    if let char = UnicodeScalar(newWord) {
+    newString.append(String(char))
+    }
 }
 newString
 
