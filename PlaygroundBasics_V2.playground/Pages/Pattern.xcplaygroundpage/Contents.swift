@@ -35,7 +35,54 @@ import Foundation
 */
 
 // Добавь код сюда:
+protocol Pizza {
+    func makePizza() -> String
+}
 
+protocol Creator {
+    func factoryMethod() -> Pizza
+    func someOperation() -> String
+}
+extension Creator {
+    func someOperation() -> String {
+        let product = factoryMethod()
+        return "Creator: pizzaiola make " + product.makePizza()
+    }
+}
+
+class CheezePizza: Pizza {
+    func makePizza() -> String {
+        return "CheezePizza"
+    }
+}
+
+class PepperoniPizza: Pizza {
+    func makePizza() -> String {
+        return "PepperoniPizza"
+    }
+}
+
+class ConcreteCreatorA: Creator {
+   public func factoryMethod() -> Pizza {
+        return CheezePizza()
+    }
+ 
+}
+
+class ConcreteCreatorB: Creator {
+   public func factoryMethod() -> Pizza {
+        return PepperoniPizza()
+    }
+}
+
+class Client {
+    static func makeOrder(creator: Creator) {
+        print("I want some pizza.\n" + creator.someOperation())
+    }
+}
+
+Client.makeOrder(creator: ConcreteCreatorA())
+Client.makeOrder(creator: ConcreteCreatorB())
 /*:
 ---
 #### Задание 2
@@ -44,8 +91,77 @@ import Foundation
 */
 
 // Добавь код сюда:
+protocol AbstractBicycle {
+    func makeBicicle() -> String
+}
 
+protocol AbstractCar {
+    func makeCar() -> String
+    
+}
 
+protocol AbstractFactory {
+    func createBicicle () -> AbstractBicycle
+    func createCar() -> AbstractCar
+}
+
+class UsedBicicle: AbstractBicycle {
+    func makeBicicle() -> String {
+        return "Used Bicilce"
+    }
+}
+
+class NewBicicle: AbstractBicycle {
+    func makeBicicle() -> String {
+        return "New Bicile"
+    }
+}
+
+class UsedCar: AbstractCar {
+    func makeCar() -> String {
+        return "Used Car"
+    }
+}
+
+class NewCar: AbstractCar {
+    func makeCar() -> String {
+        return "New Car"
+    }
+}
+
+class newTransport: AbstractFactory {
+    func createBicicle() -> AbstractBicycle {
+        return NewBicicle()
+    }
+    
+    func createCar() -> AbstractCar {
+        return NewCar()
+    }
+}
+
+class usedTransport: AbstractFactory {
+    func createBicicle() -> AbstractBicycle {
+        return UsedBicicle()
+    }
+    
+    func createCar() -> AbstractCar {
+        return UsedCar()
+    }
+}
+
+class TransportClient {
+    static func chooseTransport (factory: AbstractFactory) {
+        let product1 = factory.createBicicle()
+        let product2 = factory.createCar()
+        
+        print("Show some transport")
+        print(product1.makeBicicle())
+        print(product2.makeCar())
+    }
+}
+
+TransportClient.chooseTransport(factory: newTransport())
+TransportClient.chooseTransport(factory: usedTransport())
 /*:
 ---
 #### Задание 3
@@ -82,7 +198,99 @@ import Foundation
 */
 
 // Добавь код сюда:
+protocol Handler: class {
+    var nextHandler: Handler? { get set }
+    func setNext(handler: Handler) -> Handler
+    func handle(request: String)
+    
+}
+extension Handler {
+    func setNext(handler: Handler) -> Handler {
+        self.nextHandler = handler
+        return handler
+    }
+    
+    func handle(request: String)  {
+         nextHandler?.handle(request: request)
+    }
+}
 
+
+class FoodWasteHandler: Handler {
+    var nextHandler: Handler?
+    func handle(request: String)  {
+        if (request == "Food waste") {
+            print("You can put " + request + " here.\n")
+         } else {
+            nextHandler?.handle(request: request)
+         }
+    }
+}
+
+class ElectronicsHandler: Handler {
+    var nextHandler: Handler?
+    func handle(request: String) {
+        if (request == "Electronics") {
+            print( "You can put " + request + " here.\n")
+        } else {
+             nextHandler?.handle(request: request)
+            }
+    }
+}
+
+class PaperHandler: Handler {
+    var nextHandler: Handler?
+    func handle(request: String)  {
+        if (request == "Paper") {
+            print("You can put " + request + " here.\n")
+        } else {
+            self.nextHandler?.handle(request: request)
+            }
+    }
+    
+    
+}
+
+class GlassHandler: Handler {
+    var nextHandler: Handler?
+    func handle(request: String)  {
+    if (request == "Glass") {
+        print("You can put " + request + " here.\n")
+    } else {
+        nextHandler?.handle(request: request)
+        }
+    }
+}
+
+class TrashHandler: Handler {
+    var nextHandler: Handler?
+    func handle(request: String)  {
+        print("You " + request + " is marked.\n")
+    }
+}
+
+
+let foodWasteHandler = FoodWasteHandler()
+let electronicsHandler = ElectronicsHandler()
+let paperHandler = PaperHandler()
+let glassHandler = GlassHandler()
+let trashHandler = TrashHandler()
+
+
+let foodWaste = "Food waste"
+let electronics = "Electronics"
+let paper = "Paper"
+let glass = "Glass"
+let trash = " trash "
+
+foodWasteHandler.setNext(handler: electronicsHandler).setNext(handler: paperHandler).setNext(handler: glassHandler).setNext(handler: trashHandler)
+foodWasteHandler.handle(request: glass)
+electronicsHandler.handle(request: "chair")
+
+
+   
+
+  
 
 /*:
 ---
