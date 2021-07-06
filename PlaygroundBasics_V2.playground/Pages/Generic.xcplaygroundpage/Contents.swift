@@ -97,9 +97,18 @@ func existsManual<T: Equatable>(item:T, inArray:[T]) -> Bool {
     }
     return false
 }
- 
-existsManual(item: Person(name: "Mari", surname: "Bilous", phoneNumber: 099), inArray: [Person(name: "Jack", surname: "Sparrow", phoneNumber: 598), Person(name: "Mari", surname: "Bilous", phoneNumber: 099)])
+
+existsManual(item: "Apple", inArray: ["Grape", "Banana", "Apple"])
 
 existsManual(item: 3, inArray: [1, 4, 6])
+
+existsManual(item: Float(5.54), inArray: [3, 4.5, 5.54])
+
+existsManual(item: 4.4, inArray: [3.4, 5.6, 4])
+
+existsManual(item: Person(name: "Mari", surname: "Bilous", phoneNumber: 099), inArray: [Person(name: "Jack", surname: "Sparrow", phoneNumber: 598), Person(name: "Mari", surname: "Bilous", phoneNumber: 099)])
+
+
+
 
 //: [Назад:  Делегаты](@previous)  |  Страница 13]  [Вперед:  Паттерны проектирования](@next)
