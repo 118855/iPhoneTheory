@@ -127,7 +127,11 @@ var people2: [[String:Any]] = [
 */
 // Добавь код сюда:
 
-var sortedPeople = people2.sorted { ($0["score"] as! Int) > ($1["score"] as! Int) }
+var sortedPeople = people2.sorted(by:{
+    if let firstScore = $0["score"] as? Int, let secondScore = $1["score"] as? Int {
+        return firstScore > secondScore}
+    return false
+})
 
 for (index, item) in sortedPeople.enumerated() {
     if let firstNames = item["firstName"],
@@ -138,5 +142,4 @@ for (index, item) in sortedPeople.enumerated() {
         print("\(number). \(fullName) - \(score)")
     }
 }
-
 //: [Назад: Кортежи, перечисления и псевдонимы типов](@previous)  |  Страница 9  |  [Вперед: Структуры и классы](@next)
