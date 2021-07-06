@@ -71,7 +71,7 @@ numbers = [3, 45 , 456, 23, 6]
  */
 // Добавь код сюда:
 var multiples = numbers.filter{$0 % 3 == 0}
-if numbers == [] {
+if numbers.isEmpty {
     print("No data")
 } else {
     print(multiples)
@@ -138,6 +138,17 @@ _Output:_\
 Sum of missing numbers = 29
 */
 // Добавь код сюда:
+func sumOfMissingNumbers(_ array: [Int]) -> Int {
+    var sum = Int()
+
+    if let minNumber = array.min(), let maxNumber = array.max() {
+        let range = minNumber...maxNumber
+        let missingNumbers = Set(range).symmetricDifference(array)
+        sum = Array(missingNumbers).reduce(0, +)
+    }
+    return sum
+}
+sumOfMissingNumbers([1, 3, 5, 7, 10])
 
 /*:
 ---
@@ -162,7 +173,11 @@ _Output:_\
  ] 
 */
 // Добавь код сюда:
-
+let array2D = [ [1, 0, 0], [0, 1, 0], [0, 0, 1]]
+func reverseImage(_ arrays: [[Int]]) {
+    print(arrays.map{$0.map{ 1 - $0 }})
+}
+reverseImage(array2D)
 /*:
 ---
 ## Задание 6:
@@ -171,7 +186,14 @@ _Output:_\
  - В замыкании выведи в когсоль строку "This is closure"
 */
 // Добавь код сюда:
+func printStatement( closure: () -> Void) {
+    print("This is function")
+    closure()
+    }
 
+printStatement {
+    print("This is closure")
+}
 
 /*:
 ---
@@ -184,5 +206,7 @@ var animals = ["fish", "cat", "chicken", "dog"]
 let sortedAnimals = animals.sort { (one: String, two: String) -> Bool in
   return one < two
 }
+
+animals.sort(by: <)
 
 //: [Назад: Функции](@previous)  |  Страница 7  |  [Вперед: Кортежи, перечисления и псевдонимы](@next)
