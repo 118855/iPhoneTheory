@@ -73,6 +73,22 @@ func existsManual(item:Person, inArray:[Person]) -> Bool
 */
 
 // Добавь код сюда:
+class Person: Equatable {
+    static func == (lhs: Person, rhs: Person) -> Bool {
+        return lhs.name == rhs.name && lhs.surname == rhs.surname && lhs.phoneNumber == rhs.phoneNumber
+    }
+    
+    let name: String
+    let surname: String
+    let phoneNumber: Int
+    
+    init (name: String, surname: String, phoneNumber: Int) {
+        self.name = name
+        self.surname = surname
+        self.phoneNumber = phoneNumber
+    }
+}
+
 func existsManual<T: Equatable>(item:T, inArray:[T]) -> Bool {
     for  value in inArray {
     if item == value {
@@ -81,5 +97,9 @@ func existsManual<T: Equatable>(item:T, inArray:[T]) -> Bool {
     }
     return false
 }
+ 
+existsManual(item: Person(name: "Mari", surname: "Bilous", phoneNumber: 099), inArray: [Person(name: "Jack", surname: "Sparrow", phoneNumber: 598), Person(name: "Mari", surname: "Bilous", phoneNumber: 099)])
+
+existsManual(item: 3, inArray: [1, 4, 6])
 
 //: [Назад:  Делегаты](@previous)  |  Страница 13]  [Вперед:  Паттерны проектирования](@next)
