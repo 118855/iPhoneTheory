@@ -17,7 +17,41 @@ import Foundation
  */
 
 // Добавь код сюда:
+class User {
+    
+    func setAlarm () {
+        
+        let alarm = Alarm()
+        alarm.delegate = self
+        alarm.turnON()
+    }
+    
+}
 
+extension User: AlarmDelegate {
+    func alarmDidRang() {
+        print("User: I heard the alarm and woke up.")
+    }
+}
+    
+protocol AlarmDelegate: class {
+    func alarmDidRang()
+}
+
+class Alarm{
+    
+    weak var delegate: AlarmDelegate?
+    
+    func turnON(){
+        
+        print("Alarm: The alarm is ringing")
+        delegate?.alarmDidRang()
+    }
+}
+
+
+let user = User()
+user.setAlarm()
 /*:
 ---
 ## Задание 2
@@ -26,5 +60,50 @@ import Foundation
 ![Delegate.Task2](Playground.Delegate.Task2.png)
 */
 // Добавь код сюда:
+class Client {
+   func startRenovation() {
+        
+        let worker = Worker()
+        worker.delegate = self
+        worker.startWork()
+        worker.finishRenovation()
+   }
+}
 
+extension Client: WorkerDetegate {
+    
+    func workerDidPaintWalls() {
+        print("Client: Black color.")
+    }
+    func workerDidEndRenovation() {
+        print("Client: Good job.")
+    }
+}
+
+protocol WorkerDetegate: class {
+   
+    func workerDidPaintWalls()
+    func workerDidEndRenovation()
+}
+
+class Worker {
+    
+    weak var delegate: WorkerDetegate?
+    
+   
+    func startWork () {
+        print("Worker: Prepearing works are finished.")
+        print("Worker: What color of walls do you want?")
+        delegate?.workerDidPaintWalls()
+    }
+    
+    func finishRenovation () {
+        print("Worker: Renovation is end.")
+        delegate?.workerDidEndRenovation()
+    }
+}
+
+
+let client = Client()
+client.startRenovation()
 //: [Назад: Протоколы](@previous)  |  Страница 12]  [Вперед:  Универсальные шаблоны](@next)
