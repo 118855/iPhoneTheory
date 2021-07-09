@@ -39,7 +39,7 @@ import Foundation
  - Обьяви переменную `n` и проинициализируй ее  любым целочисленными значением.
 */
 // Добавь код сюда:
-
+var n = 5
 /*:
  - Напиши код, который выведет в консоль фразу _I like Swift!_ `n` раз.
  
@@ -57,6 +57,11 @@ _Output:_\
  */
 
 // Добавь код сюда:
+
+while n > 0 {
+    print("I like Swift!")
+    n -= 1
+}
 
 /*:
 ---
@@ -76,6 +81,11 @@ n = 5\
 */
 // Добавь код сюда:
 
+n = 5
+for index in 0...n {
+    print(index * index)
+}
+
 /*:
  - Выведи в консоль степени числа `2`, которые меньше или равны `n`.
  
@@ -92,6 +102,14 @@ n = 100\
  */
  // Добавь код сюда:
 
+n = 100
+var index = 2
+
+while index <= n {
+    print (index)
+    index *= 2
+}
+
 /*:
  - Нарисуй в консоли квадрат из `n` на `n` звездочек (⭐)
  - Example: 😉
@@ -106,6 +124,12 @@ n = 4\
  */
 // Добавь код сюда:
 
+n = 4
+
+for _ in 1...n {
+    print(String(Array(repeating: "⭐", count: n)))
+}
+
 /*:
  - Нарисуй в консоли треугольник из `n` звездочек (⭐)
  - Example: 😉
@@ -119,6 +143,11 @@ n = 4\
  */
 // Добавь код сюда:
 
+n = 4
+
+for index in 1...n {
+    print(String(Array(repeating: "⭐", count: index)))
+}
 
 /*:
 ---
@@ -129,6 +158,65 @@ n = 4\
  - Сделайте быструю сортировку  (quick sort).
 */
 // Добавь код сюда:
+
+var someArray = [12, 34, 54, 3222, 5767, 43, 4545, 5555555, 67544, 1, 3, 4, 22, 374, 88, 5, 873, 21, 98, 2198, 33298]
+
+//linear sort
+func linearSort (array:  inout [Int]) -> [Int] {
+    guard array.count > 1 else {return array}
+    for min in 0..<array.count {
+            for j in min..<array.count {
+                if array[j] < array[min] {
+                    let temp = array[min]
+                    array[min] = array[j]
+                    array[j] = temp
+                }
+            }
+        }
+    return array
+}
+print(linearSort(array: &someArray))
+
+    
+    
+
+//bubble sort
+func bubleSort (array:  inout [Int]) -> [Int] {
+    for i in 0..<array.count {
+    
+        let index = (array.count - 1) - i
+    
+        for j in 0..<index {
+            var number = array[j]
+            var numberTwo = array[j + 1]
+            if number > numberTwo {
+            number = array[j + 1]
+            numberTwo = array[j]
+        }
+    }
+  }
+    return array
+}
+bubleSort(array: &someArray)
+
+
+//quick sort
+func quickSort (array:[Int]) -> [Int] {
+    if array.count == 0 {
+        return []
+    }
+    let comparableNumber = array[0]
+    let comparableArray = array.count > 1 ? array[1..<array.count] : []
+    let smallerArray = comparableArray.filter({$0 <= comparableNumber})
+    let greaterArray = comparableArray.filter({$0 > comparableNumber})
+    
+    return quickSort(array: smallerArray) + [comparableNumber] + quickSort(array: greaterArray)
+}
+
+quickSort(array: someArray)
+
+
+
 
 /*:
 ---
@@ -141,7 +229,25 @@ n = 4\
 */
 // Добавь код сюда:
 
+//Такое же задание было в Arrays
 
+var ukraine = "Ukraine", poland = "Poland", france = "France", italy = "Italy", spain = "Spain", greece = "Greece", hungary = "Hungary", china = "China", brasil = "Brasil", albania = "Albania"
+
+var allCountries = [ukraine, poland, france, italy, spain, greece, hungary, china, brasil, albania]
+
+var sortedArray = [String]()
+
+for (_, value) in allCountries.enumerated() {
+    if value.count > 5 && !value.contains("A") {
+        sortedArray.append(value)
+    }
+    if value.contains("A") {
+        let newValue = value.replacingOccurrences(of: "A", with: "O")
+        sortedArray.append(newValue)
+        }
+    }
+
+print(sortedArray)
 /*:
 ---
 #### Задание 5:
@@ -166,6 +272,9 @@ _Output:_\
  True
 */
 // Добавь код сюда:
+let word = "Apple"
+let wordLovercased = word.lowercased()
+wordLovercased.count == Set(wordLovercased).count ? print("true") : print("false")
 
 /*:
 ---
@@ -182,8 +291,14 @@ _Output:_\
  "hhheeellllllooo"
 */
 // Добавь код сюда:
+var newWord = String()
 
-
+word.forEach{
+    for _ in 0..<3 {
+    newWord.append($0)
+    }
+}
+print(newWord)
 /*:
 ---
 #### Задание 6:
@@ -199,5 +314,9 @@ _Output:_\
  [1, 2]
 */
 // Добавь код сюда:
+var array: [Any] = [1, 2, "a", "b"]
+
+var newArray = array.compactMap({$0 as? Int})
+print(newArray)
 
 //: [Назад: Коллекции. Массивы и множества](@previous)  |  Страница 5  |  [Вперед:  Функции](@next)
