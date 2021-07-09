@@ -28,7 +28,13 @@ import Foundation
 */
 
 // Добавь код сюда:
-
+var firstNumber = 22
+var secondNumber: Int = 44
+var thirdNumber: Int = 0
+thirdNumber = firstNumber
+firstNumber = secondNumber
+secondNumber = thirdNumber
+print("Переменная а равна \(firstNumber), переменная b равна \(secondNumber)")
 /*:
 ---
 ### Задание 2:
@@ -36,6 +42,11 @@ import Foundation
  - Установи новое произвольное значение всем параметрам, для которых эта операция возможна.
 */
 // Добавь код сюда:
+let parameter: Float = 3.3
+let parameter2: Float
+var parameter3: Double
+parameter2 = 3.4
+parameter3 = 3.5
 
 
 /*:
@@ -46,19 +57,28 @@ import Foundation
  - Найди сумму всех трех констант и запишите ее в переменную типа `Float`. Результат выведи в консоль.
 */
 // Добавь код сюда:
-
+let first: Int
+let second: Float
+let third: Double
+first = 18
+second = 16.4
+third = 5.7
+var summ: Float = Float(first) + second + Float(third)
+print("Сумма констант first, second, third равно \(summ)")
 
 /*:
 - Найди произведение всех трех констант и запиши его в переменную типа `Int`. Результат выведи в консоль.
  - Note: 👆 _Помни, что тебе необходимо получить результат с минимальной погрешностью._
 */
 // Добавь код сюда:
-
+var multiple: Int = Int(Double(first)*Double(first)*third)
+print("Произведение констант first, second, third  равно \(multiple)")
 /*:
 - Найди остаток от деления константы типа `Float` на константу типа `Double` и запиши ее в переменную типа `Double`. Результат выведи в консоль.
 */
 // Добавь код сюда:
-
+var remainder: Double = Double( Int(second) % Int(third))
+print ("Остаток от деления second на third равен \(remainder)")
 
 /*:
 ---
@@ -69,7 +89,11 @@ import Foundation
  - Выведи в консоль результат.
  */
 // Добавь код сюда:
-
+var string = "Hello"
+var integer = 25
+var secondInteger = 50
+let allTogether = string + String( integer + secondInteger)
+print(allTogether)
 /*:
 ---
 #### Задание 5:
@@ -79,7 +103,11 @@ import Foundation
 
  */
 // Добавь код сюда:
-
+var logicalTrue = true
+var logicalFalse = false
+let and = logicalTrue && logicalFalse
+let or = logicalTrue || logicalFalse
+print("Результат логического И равен \(and), рузельтат ИЛИ равено \(or)")
 
 /*:
 ---
@@ -90,6 +118,11 @@ import Foundation
 
  */
 // Добавь код сюда:
+let name = "Marina Poliakova-Bilous"
+let dateOfBirth = " 20.11.1991"
+let allInformation = name + dateOfBirth
+print(allInformation)
+print(name,dateOfBirth)
 
 
 /*:
@@ -101,7 +134,13 @@ import Foundation
  - Если в названии страны встречается буква А, выведи ее нзавание в консоль.
 */
 // Добавь код сюда:
-
+var country1 = " Ukraine", country2 = "Poland", country3 = "France", country4 = "Italy", country5 = "USA"
+var allCountries = [country1, country2, country3, country4, country5]
+for country in allCountries {
+    if country.contains("A") {
+        print(country)
+    }
+}
 /*:
 ---
 #### Задание 8:
@@ -111,6 +150,36 @@ import Foundation
  - Выведи его консоль.
 */
 // Добавь код сюда:
+let someString = "строка"
+var changedString = someString.uppercased()
+let new = someString.applyingTransform(.toLatin, reverse: false)
+
+for index in someString.indices {
+    print(index)
+}
+for (index, char) in someString.enumerated() {
+    print("\(index) - \(char)")
+}
+
+// Думала еще такой вариант, но сработало только для первых трех букв
+var eng = "a"
+var rus = "а"
+
+for scalar in eng.unicodeScalars {
+    print(scalar.value)
+}
+for scalar in rus.unicodeScalars {
+    print(scalar.value)
+}
+
+var newString = String()
+for scalar in someString.unicodeScalars {
+    let newWord = scalar.value - (1090 - 116)
+    if let char = UnicodeScalar(newWord) {
+    newString.append(String(char))
+    }
+}
+newString
 
 /*:
 ---
@@ -121,5 +190,4 @@ import Foundation
  - Выведи его консоль.
 */
 // Добавь код сюда:
-
 //: [Назад: Playground](@previous)  |  Страница 3  |  [Вперед: Коллекции. Массивы и множества](@next)
