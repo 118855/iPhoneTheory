@@ -26,7 +26,9 @@ func areStringsEqual(x: String, _ y: String) -> Bool {
 }
 
 // Добавь код сюда:
-
+func areEqual<T: Equatable>(x: T, _ y: T) -> Bool {
+    return x == y
+  }
 /*:
 ---
 #### Задание 2
@@ -57,7 +59,6 @@ func existsManual(item:String, inArray:[String]) -> Bool {
         return false
     }
 }
-
 /*:
 func existsManual(item:String, inArray:[String]) -> Bool
 ...
@@ -72,6 +73,42 @@ func existsManual(item:Person, inArray:[Person]) -> Bool
 */
 
 // Добавь код сюда:
+class Person: Equatable {
+    static func == (lhs: Person, rhs: Person) -> Bool {
+        return lhs.name == rhs.name && lhs.surname == rhs.surname && lhs.phoneNumber == rhs.phoneNumber
+    }
+    
+    let name: String
+    let surname: String
+    let phoneNumber: Int
+    
+    init (name: String, surname: String, phoneNumber: Int) {
+        self.name = name
+        self.surname = surname
+        self.phoneNumber = phoneNumber
+    }
+}
+
+func existsManual<T: Equatable>(item:T, inArray:[T]) -> Bool {
+    for  value in inArray {
+    if item == value {
+            return true
+        }
+    }
+    return false
+}
+
+existsManual(item: "Apple", inArray: ["Grape", "Banana", "Apple"])
+
+existsManual(item: 3, inArray: [1, 4, 6])
+
+existsManual(item: Float(5.54), inArray: [3, 4.5, 5.54])
+
+existsManual(item: 4.4, inArray: [3.4, 5.6, 4])
+
+existsManual(item: Person(name: "Mari", surname: "Bilous", phoneNumber: 099), inArray: [Person(name: "Jack", surname: "Sparrow", phoneNumber: 598), Person(name: "Mari", surname: "Bilous", phoneNumber: 099)])
+
+
 
 
 //: [Назад:  Делегаты](@previous)  |  Страница 13]  [Вперед:  Паттерны проектирования](@next)
