@@ -56,6 +56,7 @@ print(point.x, point.y)
 struct Line {
     var p1: Point
     var p2: Point
+    
     func lenght() -> Double {
         let lenght: Double = sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y)*(p2.y - p1.y))
         return lenght
@@ -235,9 +236,10 @@ class Windows: Smart {
 */
 // Добавь код сюда:
 struct Circle {
-    private var pi: Double {
+    private var pi: Double  = {
         return 3.14
-    }
+    }()
 }
 let figure = Circle()
+
 //: [Назад: Коллекции. Словари](@previous)  |  Страница 10  |  [Вперед: Протоколы](@next)
