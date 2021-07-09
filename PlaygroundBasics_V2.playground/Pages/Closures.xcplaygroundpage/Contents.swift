@@ -33,14 +33,23 @@ import Foundation
  We ❤️ Swift
  */
 // Добавь код сюда:
+    func applyKTimes (k:Int, myClosure: () -> Void) {
+        for _ in 1...k {
+            myClosure()
+    }
+}
 
+applyKTimes(k: 3) {
+    print("We ❤️ Swift")
+}
 /*:
 ---
 #### Задание 2
  - Обьяви переменную _numbers_, представляющую собой массив, который соостоит из целых чисел. Проицинициализируй его любыми значениями.
  */
 // Добавь код сюда:
-
+var numbers = [Int]()
+numbers = [3, 45 , 456, 23, 6]
 /*:
  - Создай новый массив _multiples_, состоящий из всех кратных 3 чисел исходного массива.
  - Выведи полученный массив в консоль. Если полученный массив пустой, выведи в консоль - _No data_.
@@ -61,6 +70,12 @@ import Foundation
  No data
  */
 // Добавь код сюда:
+var multiples = numbers.filter{$0 % 3 == 0}
+if numbers.isEmpty {
+    print("No data")
+} else {
+    print(multiples)
+}
 
 /*:
  - Найди наибольшее число из исходного массива _numbers_ и выведи его в консоль.
@@ -74,6 +89,8 @@ import Foundation
  Max: 12
  */
 // Добавь код сюда:
+let maxNumber = numbers.reduce(Int.min, {max($0, $1)})
+print(maxNumber)
 
 /*:
 ---
@@ -93,6 +110,15 @@ import Foundation
  */
 
 // Добавь код сюда:
+func forEach ( _ array : [Int], _ myClosure: (Int) -> Void) {
+    for (_, value) in array.enumerated() {
+            myClosure(value)
+    }
+}
+
+forEach([1, 2, 3, 4]) {
+    print($0 + 1)
+ }
 
 /*:
 ---
@@ -112,6 +138,17 @@ _Output:_\
 Sum of missing numbers = 29
 */
 // Добавь код сюда:
+func sumOfMissingNumbers(_ array: [Int]) -> Int {
+    var sum = Int()
+
+    if let minNumber = array.min(), let maxNumber = array.max() {
+        let range = minNumber...maxNumber
+        let missingNumbers = Set(range).symmetricDifference(array)
+        sum = Array(missingNumbers).reduce(0, +)
+    }
+    return sum
+}
+sumOfMissingNumbers([1, 3, 5, 7, 10])
 
 /*:
 ---
@@ -136,7 +173,11 @@ _Output:_\
  ] 
 */
 // Добавь код сюда:
-
+let array2D = [ [1, 0, 0], [0, 1, 0], [0, 0, 1]]
+func reverseImage(_ arrays: [[Int]]) {
+    print(arrays.map{$0.map{ 1 - $0 }})
+}
+reverseImage(array2D)
 /*:
 ---
 ## Задание 6:
@@ -145,7 +186,14 @@ _Output:_\
  - В замыкании выведи в когсоль строку "This is closure"
 */
 // Добавь код сюда:
+func printStatement( closure: () -> Void) {
+    print("This is function")
+    closure()
+    }
 
+printStatement {
+    print("This is closure")
+}
 
 /*:
 ---
@@ -158,5 +206,7 @@ var animals = ["fish", "cat", "chicken", "dog"]
 let sortedAnimals = animals.sort { (one: String, two: String) -> Bool in
   return one < two
 }
+
+animals.sort(by: <)
 
 //: [Назад: Функции](@previous)  |  Страница 7  |  [Вперед: Кортежи, перечисления и псевдонимы](@next)
