@@ -153,9 +153,10 @@ var secondVariable: TupleType = ("100", nil)
 var thirdVariable: TupleType = ("-65", "70")
 
 let variablesArray = [firstVariable, secondVariable, thirdVariable]
-for variable in variablesArray {
-        if variable?.numberOne != nil && variable?.numberTwo != nil {
-            print(variable!)
-    }
-}
+variablesArray.forEach( { (variable) in
+    guard let variableOne = variable?.numberOne, let variableTwo = variable?.numberTwo else { return }
+    print (variableOne, variableTwo)
+    
+})
+
 //: [Назад: Замыкания](@previous)  |  Страница 8  |  [Вперед: Коллекции. Словари](@next)
